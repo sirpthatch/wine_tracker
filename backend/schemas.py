@@ -47,3 +47,34 @@ class Suggestion(BaseModel):
     description: str
     reason: str
     estimated_price_range: str
+
+
+# --- Local recommendations ---------------------------------------------------
+
+class LocalRecommendationsRequest(BaseModel):
+    address: str
+    radius_m: int = Field(default=800, ge=100, le=5000)
+
+
+class ScrapedWine(BaseModel):
+    name: str
+    varietal: Optional[str] = None
+    vintage: Optional[str] = None
+    price: Optional[str] = None
+    match_reason: Optional[str] = None
+
+
+class NearbyStore(BaseModel):
+    name: str
+    address: str
+    website: Optional[str] = None
+    phone: Optional[str] = None
+    distance_m: int
+    walking_minutes: int
+    inventory: list[ScrapedWine] = []
+    inventory_status: str = "Not checked"
+
+
+class LocalRecommendationsResponse(BaseModel):
+    geocoded_address: str
+    stores: list[NearbyStore]

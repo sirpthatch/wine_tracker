@@ -20,6 +20,12 @@ export function NavBar() {
         >
           Suggestions
         </NavLink>
+        <NavLink
+          to="/local"
+          className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}
+        >
+          Local Finder
+        </NavLink>
       </div>
     </nav>
   );

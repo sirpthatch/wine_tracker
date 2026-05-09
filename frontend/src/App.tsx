@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { NavBar } from "./components/NavBar";
 import { WinesPage } from "./pages/WinesPage";
 import { SuggestionsPage } from "./pages/SuggestionsPage";
+import { LocalRecommendationsPage } from "./pages/LocalRecommendationsPage";
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<WinesPage />} />
           <Route path="/suggestions" element={<SuggestionsPage />} />
+          <Route path="/local" element={<LocalRecommendationsPage />} />
         </Routes>
       </main>
     </div>

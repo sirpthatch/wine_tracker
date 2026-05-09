@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .database import engine
 from . import models
-from .routers import wines, suggestions
+from .routers import wines, suggestions, local_recommendations
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -18,6 +18,11 @@ app.add_middleware(
 
 app.include_router(wines.router, prefix="/api/wines", tags=["wines"])
 app.include_router(suggestions.router, prefix="/api/suggestions", tags=["suggestions"])
+app.include_router(
+    local_recommendations.router,
+    prefix="/api/local-recommendations",
+    tags=["local-recommendations"],
+)
 
 
 @app.get("/api/health")

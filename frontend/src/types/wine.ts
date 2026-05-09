@@ -25,3 +25,29 @@ export interface Suggestion {
   reason: string;
   estimated_price_range: string;
 }
+
+// --- Local recommendations ---------------------------------------------------
+
+export interface ScrapedWine {
+  name: string;
+  varietal: string | null;
+  vintage: string | null;
+  price: string | null;
+  match_reason: string | null;
+}
+
+export interface NearbyStore {
+  name: string;
+  address: string;
+  website: string | null;
+  phone: string | null;
+  distance_m: number;
+  walking_minutes: number;
+  inventory: ScrapedWine[];
+  inventory_status: string;
+}
+
+export interface LocalRecommendationsResponse {
+  geocoded_address: string;
+  stores: NearbyStore[];
+}

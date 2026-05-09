@@ -1,4 +1,10 @@
-import type { Wine, WineCreate, WineUpdate, Suggestion } from "../types/wine";
+import type {
+  Wine,
+  WineCreate,
+  WineUpdate,
+  Suggestion,
+  LocalRecommendationsResponse,
+} from "../types/wine";
 
 const BASE = "/api";
 
@@ -37,5 +43,12 @@ export const api = {
   },
   suggestions: {
     list: () => request<Suggestion[]>("/suggestions/"),
+  },
+  localRecommendations: {
+    search: (address: string, radius_m: number) =>
+      request<LocalRecommendationsResponse>("/local-recommendations/", {
+        method: "POST",
+        body: JSON.stringify({ address, radius_m }),
+      }),
   },
 };
